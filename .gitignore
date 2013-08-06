@@ -4,3 +4,13 @@
 *.jar
 *.war
 *.ear
+
+.DS_Store
+
+.classpath
+.project
+.settings
+
+/dynamicwicket/target
+/dynamicwicket-examples/target
+/dynamicwicket-examples/start-with-jrebel.sh
