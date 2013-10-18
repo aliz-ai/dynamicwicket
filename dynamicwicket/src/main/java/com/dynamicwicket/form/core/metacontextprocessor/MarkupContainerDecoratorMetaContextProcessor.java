@@ -1,3 +1,4 @@
+
 package com.dynamicwicket.form.core.metacontextprocessor;
 
 import org.apache.wicket.Component;
@@ -7,17 +8,18 @@ import com.dynamicwicket.core.MetaComponent;
 
 public class MarkupContainerDecoratorMetaContextProcessor extends AbstractDefaultMetaContextProcessor {
 	
-	private WebMarkupContainer container;
+	private final WebMarkupContainer container;
 	
-	public MarkupContainerDecoratorMetaContextProcessor(WebMarkupContainer container) {
+	public MarkupContainerDecoratorMetaContextProcessor( final WebMarkupContainer container ) {
 		this.container = container;
 	}
-
+	
 	@Override
-	protected void processMetaComponent(MetaComponent metaComponent) {
+	protected void processMetaComponent( final MetaComponent metaComponent ) {
 		Component componentInstance = metaComponent.getComponentInstance();
+		
 		if (componentInstance != null) {
-			container.add(componentInstance);
+			container.add( componentInstance );
 		}
 	}
 	

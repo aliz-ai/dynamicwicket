@@ -1,3 +1,4 @@
+
 package com.dynamicwicket.core;
 
 import java.beans.BeanInfo;
@@ -8,38 +9,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClassBasedMetaContextInitializer extends AbstractMetaContextInitializer {
-
+	
 	private final Class<?> clazz;
-
-	public ClassBasedMetaContextInitializer(Class<?> clazz) {
+	
+	public ClassBasedMetaContextInitializer( final Class<?> clazz ) {
 		this.clazz = clazz;
 	}
-
-	public ClassBasedMetaContextInitializer(Object object) {
-		this(object.getClass());
+	
+	public ClassBasedMetaContextInitializer( final Object object ) {
+		this( object.getClass() );
 	}
-
-	@Override
+	
 	public MetaContext initialize() {
 		List<MetaComponent> metaComponents = new ArrayList<MetaComponent>();
+		
 		try {
-			BeanInfo beanInfo = Introspector.getBeanInfo(clazz);
+			
+			BeanInfo beanInfo = Introspector.getBeanInfo( clazz );
 			PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
-
+			
 			for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
-				String propertyName = propertyDescriptor.getName();
-
-				MetaComponent metaComponent = createMetaComponent(propertyName);
-				metaComponents.add(metaComponent);
+				MetaComponent metaComponent = createMetaComponent( propertyDescriptor );
+				
+				if (metaComponent != null) {
+					metaComponents.add( metaComponent );
+				}
+				
 			}
-		} catch (IntrospectionException e) {
-			throw new RuntimeException(e);
+			
 		}
-
+		catch (IntrospectionException e) {
+			throw new RuntimeException( e );
+		}
+		
 		MetaContext context = new MetaContext();
-		context.setMetaComponents(metaComponents);
-
+		context.setMetaComponents( metaComponents );
+		
 		return context;
 	}
-
+	
 }

@@ -1,3 +1,4 @@
+
 package com.dynamicwicket.util;
 
 import java.beans.BeanInfo;
@@ -9,31 +10,33 @@ import java.lang.reflect.Method;
 
 public class ReflectionUtil {
 	
-	private ReflectionUtil() {
-	}
+	private ReflectionUtil() {}
 	
-	public static Method getReadMethod(Class<?> clazz, String methodName) {
+	public static Method getReadMethod( final Class<?> clazz, final String methodName ) {
 		try {
-			BeanInfo beanInfo = Introspector.getBeanInfo(clazz);
+			BeanInfo beanInfo = Introspector.getBeanInfo( clazz );
 			PropertyDescriptor[] propertyDescriptors = beanInfo.getPropertyDescriptors();
 			
 			for (PropertyDescriptor propertyDescriptor : propertyDescriptors) {
-				if (propertyDescriptor.getName().equals(methodName)) {
+				if (propertyDescriptor.getName().equals( methodName )) {
 					return propertyDescriptor.getReadMethod();
 				}
 			}
+			
 		}
+		
 		catch (IntrospectionException e) {
-			throw new RuntimeException("Unhandled exception!", e);
+			throw new RuntimeException( "Unhandled exception!", e );
 		}
 		
 		return null;
 	}
 	
-	public static <T extends Annotation> T getAnnotation(Class<?> clazz, Class<T> annotationClass, String property) {
-		Method readMethod = ReflectionUtil.getReadMethod(clazz, property);
+	public static <T extends Annotation> T getAnnotation( final Class<?> clazz, final Class<T> annotationClass, final String property ) {
+		Method readMethod = ReflectionUtil.getReadMethod( clazz, property );
+		
 		if (readMethod != null) {
-			return readMethod.getAnnotation(annotationClass);
+			return readMethod.getAnnotation( annotationClass );
 		}
 		
 		return null;

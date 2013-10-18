@@ -1,3 +1,4 @@
+
 package com.dynamicwicket.form.core.metacontextprocessor;
 
 import org.apache.wicket.Component;
@@ -11,23 +12,22 @@ import com.dynamicwicket.core.behavior.TableCellBehavior;
 import com.dynamicwicket.form.component.AbstractDynamicFormComponent;
 
 public class TableCellMetaContextProcessor extends AbstractDefaultMetaContextProcessor {
-
+	
 	@Override
-	protected void processMetaComponent(MetaComponent metaComponent) {
+	protected void processMetaComponent( final MetaComponent metaComponent ) {
 		Component componentInstance = metaComponent.getComponentInstance();
 		if (componentInstance != null && componentInstance instanceof AbstractDynamicFormComponent<?>) {
 			AbstractDynamicFormComponent<?> formComponent = (AbstractDynamicFormComponent<?>) componentInstance;
-			formComponent.visitChildren(new IVisitor<Component, Void>() {
-
-				@Override
-				public void component(Component component, IVisit<Void> arg1) {
+			formComponent.visitChildren( new IVisitor<Component, Void>() {
+				
+				public void component( final Component component, final IVisit<Void> arg1 ) {
 					if (component instanceof Label || component instanceof FormComponent<?>) {
-						component.add(new TableCellBehavior());
+						component.add( new TableCellBehavior() );
 					}
 				}
-
-			});
+				
+			} );
 		}
 	}
-
+	
 }
