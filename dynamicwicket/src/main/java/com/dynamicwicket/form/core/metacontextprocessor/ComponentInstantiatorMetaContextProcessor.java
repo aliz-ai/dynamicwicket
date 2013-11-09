@@ -4,8 +4,10 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.util.lang.Args;
 
 import com.dynamicwicket.core.MetaComponent;
 
@@ -14,6 +16,8 @@ public class ComponentInstantiatorMetaContextProcessor extends AbstractDefaultMe
 	private IModel<?> model;
 	
 	public ComponentInstantiatorMetaContextProcessor(IModel<?> model) {
+		Args.notNull(model, "model");
+		
 		this.model = model;
 	}
 	
@@ -36,17 +40,17 @@ public class ComponentInstantiatorMetaContextProcessor extends AbstractDefaultMe
 			
 			metaComponent.setComponentInstance(component);
 		} catch (IllegalArgumentException e) {
-			throw new RuntimeException(e);
+			throw new WicketRuntimeException(e);
 		} catch (InstantiationException e) {
-			throw new RuntimeException(e);
+			throw new WicketRuntimeException(e);
 		} catch (IllegalAccessException e) {
-			throw new RuntimeException(e);
+			throw new WicketRuntimeException(e);
 		} catch (InvocationTargetException e) {
-			throw new RuntimeException(e);
+			throw new WicketRuntimeException(e);
 		} catch (SecurityException e) {
-			throw new RuntimeException(e);
+			throw new WicketRuntimeException(e);
 		} catch (NoSuchMethodException e) {
-			throw new RuntimeException(e);
+			throw new WicketRuntimeException(e);
 		}
 	}
 	

@@ -8,6 +8,8 @@ import java.beans.PropertyDescriptor;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.wicket.WicketRuntimeException;
+
 public class ClassBasedMetaContextInitializer extends AbstractMetaContextInitializer {
 	
 	private final Class<?> clazz;
@@ -36,10 +38,8 @@ public class ClassBasedMetaContextInitializer extends AbstractMetaContextInitial
 				}
 				
 			}
-			
-		}
-		catch (IntrospectionException e) {
-			throw new RuntimeException( e );
+		} catch (IntrospectionException e) {
+			throw new WicketRuntimeException(e);
 		}
 		
 		MetaContext context = new MetaContext();

@@ -1,6 +1,7 @@
 package com.dynamicwicket.form.component;
 
 import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.panel.GenericPanel;
@@ -35,7 +36,7 @@ public abstract class AbstractDynamicFormComponent<T> extends GenericPanel<T> {
 			return new ResourceModel(createLabelResourceKey(propertyExpression));
 		}
 
-		throw new RuntimeException();
+		throw new WicketRuntimeException();
 	}
 	
 	protected abstract FormComponent<T> createFormComponent();

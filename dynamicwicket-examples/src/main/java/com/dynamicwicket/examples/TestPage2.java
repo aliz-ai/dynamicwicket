@@ -38,13 +38,13 @@ public class TestPage2 extends WebPage {
 		componentClassProvider.registerComponentClass(Boolean.class, CheckBoxFormComponent.class);
 		componentClassProvider.registerComponentClass(boolean.class, CheckBoxFormComponent.class);
 
-		ClassBasedMetaContextInitializer formInitializer =
+		ClassBasedMetaContextInitializer metaContextInitializer =
 			new ClassBasedMetaContextInitializer(TestObject.class);
 
 		RepeatingView repeatingView = new RepeatingView("formLine");
 		testForm.add(repeatingView);
 
-		DynamicProcessor dynamicProcessor = new DynamicProcessor(formInitializer);
+		DynamicProcessor dynamicProcessor = new DynamicProcessor(metaContextInitializer);
 		dynamicProcessor.addDynamicProcessors(
 			new ClassBasedComponentClassProviderMetaContextProcessor(TestObject.class, componentClassProvider),
 			new RepeatingViewComponentInstantiatorMetaContextProcessor(model, repeatingView),

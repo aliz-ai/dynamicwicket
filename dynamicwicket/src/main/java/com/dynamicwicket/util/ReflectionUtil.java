@@ -8,6 +8,8 @@ import java.beans.PropertyDescriptor;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
 
+import org.apache.wicket.WicketRuntimeException;
+
 public class ReflectionUtil {
 	
 	private ReflectionUtil() {}
@@ -22,11 +24,8 @@ public class ReflectionUtil {
 					return propertyDescriptor.getReadMethod();
 				}
 			}
-			
-		}
-		
-		catch (IntrospectionException e) {
-			throw new RuntimeException( "Unhandled exception!", e );
+		} catch (IntrospectionException e) {
+			throw new WicketRuntimeException(e);
 		}
 		
 		return null;

@@ -13,8 +13,8 @@ public class ClassBasedComponentClassProviderMetaContextProcessor extends Abstra
 	private final Class<?> clazz;
 	private final ComponentClassProvider componentClassProvider;
 
-	public ClassBasedComponentClassProviderMetaContextProcessor(Class<?> clazz,
-		ComponentClassProvider componentClassProvider)
+	public ClassBasedComponentClassProviderMetaContextProcessor(
+			Class<?> clazz,	ComponentClassProvider componentClassProvider)
 	{
 		this.clazz = clazz;
 		this.componentClassProvider = componentClassProvider;

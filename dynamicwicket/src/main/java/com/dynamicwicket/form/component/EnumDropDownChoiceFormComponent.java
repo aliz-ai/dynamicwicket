@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.wicket.WicketRuntimeException;
 import org.apache.wicket.markup.html.form.AbstractChoice;
 import org.apache.wicket.markup.html.form.EnumChoiceRenderer;
 import org.apache.wicket.markup.html.form.FormComponent;
@@ -34,7 +35,7 @@ public class EnumDropDownChoiceFormComponent<E extends Enum<E>> extends DropDown
 					E[] values = (E[]) objectClass.getMethod("values").invoke(null);
 					return Arrays.asList(values);
 				} catch (Exception e) {
-					throw new RuntimeException(e);
+					throw new WicketRuntimeException(e);
 				}
 			}
 		}
