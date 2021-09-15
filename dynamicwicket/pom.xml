@@ -12,7 +12,7 @@
 	<description></description>
 
 	<properties>
-		<wicket.version>6.11.0</wicket.version>
+		<wicket.version>7.17.0</wicket.version>
 	</properties>
 
 	<dependencies>
